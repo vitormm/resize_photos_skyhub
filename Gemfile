@@ -22,8 +22,17 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #Mongodb gem
 gem 'mongoid', '~> 4.0.2'
+# C extensions to accelerate the Ruby BSON serialization.
 gem 'bson_ext'
+# Easy file attachment management for ActiveRecord
+gem 'paperclip'
+# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions.
+gem 'rest-client'
+# Using paperclip gem with mongodb
+gem 'mongoid-paperclip'
 
+#rspec for rails
+gem 'rspec-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
