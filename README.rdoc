@@ -1,31 +1,30 @@
 == README
 
-Repo already being developed
 
+This is the Resize photos – SkyHub challenge from Vitor Matta
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application was created to:
+* Consume a webservice endpoint (http://54.152.221.29/images.json) that returns a JSON of photos. There are 10 photos.
+* Generate three different formats for each photo. The dimensions are: small (320x240), medium (384x288) and large (640x480).
+* Expose a webservice endpoint that lists (in JSON format) all the ten photos with their respective formats, providing their URLs.
+* Show every image with its many ormats (it was a plus)
 
-Things you may want to cover:
-
-* Ruby version
+This project was created using ruby on rails due to the facilities and libraries to deal with images to resize with no pain.
+It uses:
+* mongodb and paperclip gem to deal with images.
+* Rspec and factory girl to make the tests.
+* Rest-client to deal with http requests
+* Sucker punch to act as asynchronous processing library. I choose sucker punch because it is easy to integrate and does not require many configurations when deployed.
+* To interact with mongodb, mongoid was used.
+* To convert the images, ImageMagick must be installed on your system.
 
 * System dependencies
+  * mongodb (v2.6.12 was used in a fedora 24 box). Ensure mongodb is installed and running on your system
+  * ImageMagick is very inportant to use mongoid-paperclip and must be installed on your system before proceed. Ensure ImageMagick is installed on your system and that '''convert''' command is available after the installation
+
 
 * Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+ * Run '''bundle install''' to install the gems
+ * Run '''rspec''' to performa the tests
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
