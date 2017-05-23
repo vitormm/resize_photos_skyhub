@@ -18,13 +18,34 @@ It uses:
 * To interact with mongodb, mongoid was used.
 * To convert the images, ImageMagick must be installed on your system.
 
-* System dependencies
+When the application is started, it enqueues a job with sucker punch to download and convert the images. Thi solution was
+used to increase the user experience when listing the images.
+
+=== System dependencies
   * mongodb (v2.6.12 was used in a fedora 24 box). Ensure mongodb is installed and running on your system
   * ImageMagick is very inportant to use mongoid-paperclip and must be installed on your system before proceed. Ensure ImageMagick is installed on your system and that '''convert''' command is available after the installation
 
 
-* Configuration
- * Run '''bundle install''' to install the gems
- * Run '''rspec''' to performa the tests
+=== Configuration
+ * Run *bundle install* to install the gems
+ * Run *rspec* to perform the tests
+ * Run *rails s* to start the system in development mode
 
-* Deployment instructions
+
+=== Usage
+ * List (in JSON format) all the ten photos with their respective formats, providing their URLs
+
+ ```
+ curl -X GET   http://localhost:3000/   -H 'cache-control: no-cache'
+ ```
+
+ Another way to use this feature is to point http://localhost:3000 in your browser
+
+ * Show every image in small, medium, large and original format
+ Access http://localhost:3000/images/list in your browser and you will see all 10 images in the available formats.
+
+
+=== Deployment instructions
+* Deployment should be done with capistrano. The deployment configuration was not made. I let it to the user so it can configure your servers, branches etc.
+* The user will need to configure config/deploy/production.rb, config/deploy/staging.rb and config/deploy.rb before use *cap deploy*
+
