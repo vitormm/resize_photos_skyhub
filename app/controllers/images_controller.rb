@@ -1,26 +1,25 @@
 class ImagesController < ApplicationController
 
-  SKY_HUB_IMAGES = 'http://54.152.221.29/images.json'
-
   def index
-    image_links = RestClient.get(SKY_HUB_IMAGES)
-    image_links = JSON.parse(image_links)
-    if image_links.present? and image_links["images"].present?
-      image_links["images"].map{|i| i["url"]}.each do |image_url|
-        puts image_url
-        if !Image.find_by(original_url: image_url).present?
-          image = Image.new
-          image.original_url = image_url
-          image.attachment = URI.parse(image_url).open
-          image.save
-        end
-        puts "saved!"
-      end
+    images = Image.all
+    images_hash = {}
+    images_hash[:images] = []
+    images.each do |image|
+      images_hash[:images] << {original_url: image.original_url,
+                               small: "http://#{request.host}:#{request.port}#{image.attachment.url('small')}",
+                               medium: "http://#{request.host}:#{request.port}#{image.attachment.url('medium')}",
+                               large: "http://#{request.host}:#{request.port}#{image.attachment.url('large')}",
+                               original: "http://#{request.host}:#{request.port}#{image.attachment.url('original')}"}
     end
 
-    @images = Image.all
+    render :json => images_hash
 
-    #render :json => image_links
+  rescue Exception => e
+    render :json => {message: e.message}, :status => 500
+  end
+
+  def list
+    @images = Image.all
   rescue Exception => e
     render :json => {message: e.message}, :status => 500
   end

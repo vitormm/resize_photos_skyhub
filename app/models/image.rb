@@ -5,11 +5,7 @@ class Image
   field :original_url,        :type => String
 
   has_mongoid_attached_file :attachment,
-    #:path           => ':attachment/:id/:style.:extension',
-    #:storage        => :s3,
-    #:url            => '/:class/:attachment/:id/:style_:filename',
-    #:s3_host_alias  => 'something.cloudfront.net',
-    #:s3_credentials => File.join(Rails.root, 'config', 's3.yml'),
+    :url            => '/images/:attachment/:id/:style_:filename',
     :styles => {
         :original => ['800x600', :jpg],
         :small    => ['320x240', :jpg],
@@ -18,4 +14,5 @@ class Image
     }
 
   validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
+
 end

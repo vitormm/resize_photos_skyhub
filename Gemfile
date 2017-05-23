@@ -30,6 +30,8 @@ gem 'paperclip'
 gem 'rest-client'
 # Using paperclip gem with mongodb
 gem 'mongoid-paperclip'
+#Sucker Punch is a Ruby asynchronous processing library using concurrent-ruby, heavily influenced by Sidekiq and girl_friday.
+gem 'sucker_punch'
 
 #rspec for rails
 gem 'rspec-rails'
